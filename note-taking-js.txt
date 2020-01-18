@@ -1,0 +1,106 @@
+﻿Execution Contexts:
+
+Execution context is a box/container/wrapper that stores our variables and where our code is evaluated and executed.
+By default, the execution context is the Global Execution COntext. This is where the code that is not inside any function sits. This is associated with the Global object.
+In browsers, that's the window object. So anything gets attached to the window object. 
+lastName === window.lastName // true
+
+Hoisting:
+
+Hoisting is a JavaScript mechanism where variable declarations using var are hoisted/lifted to the top of their scope (to the top of their functional/ local scope if they are declared inside a function or to the top of their global scope if they are declared outside of a function) as soon as JavaScript compiles all of your code.
+
+So for example:
+
+console.log(hoist);
+var hoist = 'This variable has been hoisted.';
+
+What would be the output?
+1. Uncaught ReferenceError: hoist is not defined
+2. This variable has been hoisted.
+3. undefined
+
+The answer is 3!
+
+The above code is the same as:
+
+var hoist;
+console.log(hoist); // undefined
+hoist = 'This variable has been hoisted';
+
+Another example:
+
+function hoist() {
+  console.log(message);
+  var message = 'Hoisting is done.';
+}
+hoist();
+
+Again - undefined and is equivalent to:
+
+function hoist() {
+  var message;
+  console.log(message); // undefined
+  message = 'Hoisting is done';
+}
+hoist(); // undefined
+
+The variable declaration, var message, whose scope is the function hoist(), is hoisted to the top of the function.
+
+The correct way is as follows:
+function hoist() {
+  var message = 'This avoids the above pitfall.';
+  console.log(message);
+}
+
+hoist(); // This avoids the above pitfall.
+
+Hoisting Functions:
+
+Hoisting also moves the function declarations, but these go to the very top and hence will sit above all of the variable declarations.
+If you’ve ever wondered why you were able to call functions before you wrote them in your code, the magic is done by hoisting.
+
+Here is a good time to recall the difference between function declarations and function expressions and that expressions therefore do not get Hoisted. 
+
+
+Let’s go for another example:
+function foo() {
+  function bar() {
+    return 'bar1';
+  }
+  return bar();
+  function bar() {
+    return 'bar2';
+  }
+}
+foo();
+Guess the output?
+
+The output is bar2 . The first function inside foo will get hoisted. Similarly, the second function declaration will also get hoisted on the top. Because both functions have the same name, the second function declaration will replace the first one. Hence, while executing, bar, the second function, will be called.
+
+Hoisting of functions happens before hoisting of variables. Variables are set as undefined and are set during execution (whereas functions are set before execution begins). Big difference!
+
+
+---------------------------------
+
+WROTE IN ONENOTE on surface3
+
+---------------------------------
+
+Event listeners:
+
+ when we pass a function as an argument to another function, it is called a 'callback'. Note that it is without () and just the name of the function:
+
+function btn(){
+    // do stuff
+};
+
+btn();
+
+document.querySelector('.btn-roll').addEventListener('click', btn);
+
+Instead of bothering with function declaration and stuff, we can use an anonymous function (which won't be accessible outside of the current scope):
+
+document.querySelector('.btn-roll').addEventListener('click', function(){
+    // do stuff
+});
+
