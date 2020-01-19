@@ -1,4 +1,4 @@
-# PIG-game
+# PIG
 a PIG game written in JavaScript pre ES6
 
 /*
