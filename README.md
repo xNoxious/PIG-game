@@ -1,3 +1,12 @@
+
+            /)             
+            ((             
+     /\_/\   ))  - Meow!   
+    ( ^.^ )_//             
+    (m) (m)\_)    
+
+Yes. A game. How cool? Now pet the cat. Its name is Fluffymuffins.
+
 # PIG
 a PIG game written in JavaScript pre ES6
 
